@@ -20,6 +20,9 @@ return {
 				"scss",
 				"sql",
 				"svelte",
+				"c_sharp",
+				"python",
+				"jq",
 			},
 
 			-- matchup = {

@@ -12,7 +12,66 @@ return {
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
+				"pyright",
+				"omnisharp",
 			})
+			opts.automatic_installation = {
+				exclude = {
+					"ruff-lsp",
+					"ruff_lsp",
+					"csharpier",
+				},
+			}
+		end,
+	},
+	--{ "nvim-neotest/neotest-plenary" },
+	--{
+	--	"Issafalcon/neotest-dotnet",
+	--	opts = {
+	--		discovery_root = "project",
+	--		dotnet_additional_args = {
+	--			"--no-restore",
+	--			"--verbosity detailed",
+	--		},
+	--	},
+	--},
+	--{ "nvim-neotest/neotest-python" },
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"Issafalcon/neotest-dotnet",
+			"nvim-neotest/neotest-plenary",
+			"nvim-neotest/neotest-python",
+			"rouge8/neotest-rust",
+		},
+		opts = function()
+			return {
+				--log_level = 1,
+				adapters = {
+					require("neotest-plenary"),
+					require("neotest-python"),
+					require("neotest-rust")({
+						args = { "--no-capture" },
+						dap_adapter = "lldb",
+					}),
+					require("neotest-dotnet")({
+						discovery_root = "solution",
+						dap = {
+							args = { justMyCode = false },
+							adapter_name = "netcoredbg",
+						},
+						dotnet_additional_args = {
+							"--no-restore",
+							"--verbosity normal",
+						},
+					}),
+					--{"neotest-dotnet", opts = { discovery_root = "solution"}},
+				},
+			}
 		end,
 	},
 
@@ -35,6 +94,14 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
+				ruff_lsp = {
+					mason = false,
+				},
+				omnisharp = {
+					root_dir = function()
+						return vim.loop.cwd()
+					end,
+				},
 				cssls = {},
 				tailwindcss = {
 					root_dir = function(...)
