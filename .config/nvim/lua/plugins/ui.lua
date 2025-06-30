@@ -60,15 +60,12 @@ return {
 		},
 	},
 
-	-- animations
 	{
-		"echasnovski/mini.animate",
-		event = "VeryLazy",
-		opts = function(_, opts)
-			opts.scroll = {
-				enable = false,
-			}
-		end,
+		"snacks.nvim",
+		opts = {
+			scroll = { enabled = false },
+		},
+		keys = {},
 	},
 
 	-- buffer line
@@ -121,6 +118,25 @@ return {
 		end,
 	},
 
+	-- statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		opts = function(_, opts)
+			local LazyVim = require("lazyvim.util")
+			opts.sections.lualine_c[4] = {
+				LazyVim.lualine.pretty_path({
+					length = 0,
+					relative = "cwd",
+					modified_hl = "MatchParen",
+					directory_hl = "",
+					filename_hl = "Bold",
+					modified_sign = "",
+					readonly_icon = " 󰌾 ",
+				}),
+			}
+		end,
+	},
+
 	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
@@ -132,5 +148,9 @@ return {
 			},
 		},
 		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		enabled = false,
 	},
 }
