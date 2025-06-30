@@ -14,12 +14,12 @@ return {
 				"css-lsp",
 				"pyright",
 				"omnisharp",
+				"csharpier",
 			})
 			opts.automatic_installation = {
 				exclude = {
 					"ruff-lsp",
 					"ruff_lsp",
-					"csharpier",
 				},
 			}
 		end,
