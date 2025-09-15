@@ -48,8 +48,10 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
+		enabled = false,
 		opts = {
 			suggestion = {
+				enabled = true,
 				auto_trigger = true,
 				keymap = {
 					accept = "<C-l>",
@@ -63,7 +65,9 @@ return {
 			filetypes = {
 				markdown = true,
 				help = true,
+				["*"] = true,
 			},
+			-- copilot_model = "",
 		},
 	},
 }

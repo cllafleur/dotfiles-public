@@ -56,3 +56,6 @@ vim.filetype.add({
 vim.g.lazyvim_prettier_needs_config = true
 vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_cmp = "blink.cmp"
+
+--vim.g.copilot_proxy = "http://localhost:11435"
+--vim.g.copilot_proxy_strict_ssl = false
