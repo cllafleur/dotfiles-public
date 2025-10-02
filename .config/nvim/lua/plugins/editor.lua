@@ -235,43 +235,99 @@ return {
 
 	{
 		"saghen/blink.cmp",
-		opts = {
-			keymap = {
-				["<C-y>"] = require("minuet").make_blink_map(),
-			},
-			sources = {
-				-- default = { "lsp", "path", "snippets", "buffer", "llm", "minuet" },
-				default = { "lsp", "path", "snippets", "buffer", "minuet" },
-				providers = {
-					minuet = {
-						name = "minuet",
-						module = "minuet.blink",
-						async = true,
-						-- Should match minuet.config.request_timeout * 1000,
-						-- since minuet.config.request_timeout is in seconds
-						timeout_ms = 3000,
-						score_offset = 50, -- Gives minuet higher priority among suggestions
+		opts = function()
+			local source_icons = {
+				minuet = "󱗻",
+				orgmode = "",
+				otter = "󰼁",
+				nvim_lsp = "",
+				lsp = "",
+				buffer = "",
+				luasnip = "",
+				snippets = "",
+				path = "",
+				git = "",
+				tags = "",
+				cmdline = "󰘳",
+				latex_symbols = "",
+				cmp_nvim_r = "󰟔",
+				codeium = "󰩂",
+				-- FALLBACK
+				fallback = "󰜚",
+			}
+			local kind_icons = {
+				-- LLM Provider icons
+				claude = "󰋦",
+				openai = "󱢆",
+				codestral = "󱎥",
+				gemini = "",
+				Groq = "",
+				Openrouter = "󱂇",
+				Ollama = "󰳆",
+				["Llama.cpp"] = "󰳆",
+				Deepseek = "",
+			}
+			return {
+				keymap = {
+					preset = "enter",
+					["<C-y>"] = require("minuet").make_blink_map(),
+				},
+				sources = {
+					-- default = { "lsp", "path", "snippets", "buffer", "llm", "minuet" },
+					default = { "lsp", "path", "snippets", "buffer" },
+					providers = {
+						minuet = {
+							name = "minuet",
+							module = "minuet.blink",
+							async = true,
+							-- Should match minuet.config.request_timeout * 1000,
+							-- since minuet.config.request_timeout is in seconds
+							timeout_ms = 3000,
+							score_offset = 50, -- Gives minuet higher priority among suggestions
+						},
+						--llm = {
+						--	name = "LLM",
+						--	module = "llm.common.completion.frontends.blink",
+						--	timeout_ms = 10000,
+						--	score_offset = 100,
+						--	async = true,
+						--},
 					},
-					--llm = {
-					--	name = "LLM",
-					--	module = "llm.common.completion.frontends.blink",
-					--	timeout_ms = 10000,
-					--	score_offset = 100,
-					--	async = true,
-					--},
 				},
-			},
-			completion = {
-				trigger = { prefetch_on_insert = false },
-				menu = {
-					winblend = vim.o.pumblend,
+				appearance = {
+					use_nvim_cmp_as_default = true,
+					nerd_font_variant = "normal",
+					kind_icons = kind_icons,
 				},
-			},
-			signature = {
-				window = {
-					winblend = vim.o.pumblend,
+				completion = {
+					trigger = { prefetch_on_insert = false },
+					menu = {
+						winblend = vim.o.pumblend,
+						draw = {
+							columns = {
+								{ "kind_icon", "label", "label_description", gap = 1 },
+								--{ "kind_icon", "kind" },
+								--{ "source_icon" },
+							},
+							components = {
+								source_icon = {
+									-- don't truncate source_icon
+									ellipsis = false,
+									text = function(ctx)
+										return source_icons[ctx.source_name:lower()] or source_icons.fallback
+									end,
+									highlight = "BlinkCmpSource",
+								},
+							},
+						},
+					},
 				},
-			},
-		},
+				signature = {
+					window = {
+						winblend = vim.o.pumblend,
+					},
+				},
+			}
+		end,
 	},
 }
