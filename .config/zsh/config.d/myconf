@@ -1,0 +1,2 @@
+alias gits="git status"
+alias gitf="git fetch --all --prune"

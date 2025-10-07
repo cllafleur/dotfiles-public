@@ -1,0 +1,2 @@
+export PATH="$HOME/.local/bin:$HOME/.dotnet/tools:$HOME/.bin:$HOME/.cargo/bin:$PATH"
+export EDITOR=/usr/bin/vim

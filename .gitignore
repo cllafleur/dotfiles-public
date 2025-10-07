@@ -78,3 +78,5 @@ Pods/
 
 # Claude Code
 .claude/*.local.json
+
+**/ignore_*
