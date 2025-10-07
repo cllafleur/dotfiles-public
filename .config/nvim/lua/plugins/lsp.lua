@@ -86,9 +86,16 @@ return {
 					mason = false,
 				},
 				omnisharp = {
-					root_dir = function()
-						return vim.loop.cwd()
+					--cmd = { "omnisharp" },
+					root_dir = function(bufnr, on_dir)
+						on_dir(vim.loop.cwd())
 					end,
+					settings = {
+						RoslynExtensionsOptions = {
+							EnableImportCompletion = true,
+							EnableDecompilationSupport = true,
+						},
+					},
 				},
 				cssls = {},
 				tailwindcss = {
