@@ -237,7 +237,7 @@ return {
 		"saghen/blink.cmp",
 		opts = function()
 			local source_icons = {
-				minuet = "󱗻",
+				--minuet = "󱗻",
 				orgmode = "",
 				otter = "󰼁",
 				nvim_lsp = "",
@@ -270,21 +270,21 @@ return {
 			return {
 				keymap = {
 					preset = "enter",
-					["<C-y>"] = require("minuet").make_blink_map(),
+					--["<C-y>"] = require("minuet").make_blink_map(),
 				},
 				sources = {
 					-- default = { "lsp", "path", "snippets", "buffer", "llm", "minuet" },
 					default = { "lsp", "path", "snippets", "buffer" },
 					providers = {
-						minuet = {
-							name = "minuet",
-							module = "minuet.blink",
-							async = true,
-							-- Should match minuet.config.request_timeout * 1000,
-							-- since minuet.config.request_timeout is in seconds
-							timeout_ms = 3000,
-							score_offset = 50, -- Gives minuet higher priority among suggestions
-						},
+						--minuet = {
+						--	name = "minuet",
+						--	module = "minuet.blink",
+						--	async = true,
+						--	-- Should match minuet.config.request_timeout * 1000,
+						--	-- since minuet.config.request_timeout is in seconds
+						--	timeout_ms = 3000,
+						--	score_offset = 50, -- Gives minuet higher priority among suggestions
+						--},
 						--llm = {
 						--	name = "LLM",
 						--	module = "llm.common.completion.frontends.blink",

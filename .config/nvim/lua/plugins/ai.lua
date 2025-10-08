@@ -7,6 +7,7 @@ return {
 	},
 	{
 		"milanglacier/minuet-ai.nvim",
+		enabled = false,
 		dependencies = { "Davidyz/VectorCode" },
 		config = function()
 			require("vectorcode").setup({
@@ -227,8 +228,8 @@ return {
 			require("codecompanion").setup({
 				strategies = {
 					inline = { adapter = { name = "ollama_ctx_16k", model = "codegemma:7b-instruct" } },
-					chat = { adapter = "ollamactx40k_think" },
-					cmd = { adapter = "ollama_ctx_16k" },
+					chat = { adapter = { name = "copilot", model = "claude-sonnet-4" } },
+					cmd = { adapter = { name = "copilot", model = "claude-sonnet-3.5" } },
 				},
 				adapters = {
 					gemini = function()

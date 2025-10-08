@@ -48,7 +48,7 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
+		enabled = true,
 		opts = {
 			suggestion = {
 				enabled = true,
