@@ -227,9 +227,9 @@ return {
 		config = function()
 			require("codecompanion").setup({
 				strategies = {
-					inline = { adapter = { name = "ollama_ctx_16k", model = "codegemma:7b-instruct" } },
+					inline = { adapter = { name = "copilot", model = "claude-3.7-sonnet" } },
 					chat = { adapter = { name = "copilot", model = "claude-sonnet-4" } },
-					cmd = { adapter = { name = "copilot", model = "claude-sonnet-3.5" } },
+					cmd = { adapter = { name = "copilot", model = "claude-3.7-sonnet" } },
 				},
 				adapters = {
 					gemini = function()

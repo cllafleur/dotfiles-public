@@ -53,6 +53,8 @@ custom-shader-animation = always
 theme = "Bright Lights"
 background-opacity = 0.85
 
+adjust-cell-height = -2
+
 cursor-style = block
 cursor-style-blink = true
 
