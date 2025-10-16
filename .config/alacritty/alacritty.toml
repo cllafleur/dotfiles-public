@@ -1,0 +1,12 @@
+[general]
+#import = [ "./rose_pine.toml"]
+import = [ "./smoooooth.toml"]
+live_config_reload = true
+
+[window]
+opacity = 0.9
+
+[font]
+normal = { family = "JetBrainsMonoNLNerdFontMono", style = "Regular" }
+size = 11.25
+offset = { x = 0, y = -2 }
