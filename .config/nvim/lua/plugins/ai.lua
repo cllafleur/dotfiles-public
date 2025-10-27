@@ -335,6 +335,14 @@ return {
 							},
 						},
 					},
+					mcphub = {
+						callback = "mcphub.extensions.codecompanion",
+						opts = {
+							make_vars = true,
+							make_slash_commands = true,
+							show_result_in_chat = true,
+						},
+					},
 				},
 			})
 			--local progress = require("fidget.progress")
@@ -374,7 +382,21 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"folke/noice.nvim",
 			--"j-hui/fidget.nvim",
+			"ravitemer/mcphub.nvim",
 		},
+	},
+	{
+		"ravitemer/mcphub.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		build = "bundled_build.lua",
+		config = function()
+			require("mcphub").setup({
+				port = 37373,
+				use_bundled_binary = true,
+			})
+		end,
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
