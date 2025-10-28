@@ -59,11 +59,11 @@ return {
 			timeout = 5000,
 		},
 	},
-
 	{
 		"snacks.nvim",
 		opts = {
-			scroll = { enabled = false },
+			animate = { enabled = true },
+			scroll = { enabled = true },
 		},
 		keys = {},
 	},

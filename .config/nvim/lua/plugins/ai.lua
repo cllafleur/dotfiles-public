@@ -231,6 +231,15 @@ return {
 					chat = { adapter = { name = "copilot", model = "claude-sonnet-4" } },
 					cmd = { adapter = { name = "copilot", model = "claude-3.7-sonnet" } },
 				},
+				memory = {
+					opts = {
+						chat = {
+							enabled = true,
+							default_memory = { "default" },
+						},
+					},
+				},
+				prompt_library = require("plugins.extensions.companion-prompt-library").get_prompt_library(),
 				adapters = {
 					gemini = function()
 						return require("codecompanion.adapters").extend("gemini", {
