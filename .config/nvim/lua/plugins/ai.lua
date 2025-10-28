@@ -302,6 +302,13 @@ return {
 							},
 						})
 					end,
+					lmstudio = function()
+						return require("codecompanion.adapters").extend("openai_compatible", {
+							env = {
+								url = "http://localhost:1234",
+							},
+						})
+					end,
 				},
 				extensions = {
 					vectorcode = {
