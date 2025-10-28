@@ -64,6 +64,13 @@ return {
 		opts = {
 			animate = { enabled = true },
 			scroll = { enabled = true },
+			picker = {
+				sources = {
+					explorer = {
+						layout = { preview = "main" },
+					},
+				},
+			},
 		},
 		keys = {},
 	},
