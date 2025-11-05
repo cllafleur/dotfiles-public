@@ -3,6 +3,71 @@ local constants = require("codecompanion.config").constants
 
 function M.get_prompt_library()
 	return {
+
+		["Plan feature implementation"] = {
+			strategy = "chat",
+			description = "Decompose complex tasks into smaller, manageable steps and execute them sequentially",
+			opts = {
+				index = 1,
+				is_default = true,
+				--short_name = "pw",
+			},
+			context = {
+				{
+					type = "file",
+					path = {
+						"AGENTS.md",
+					},
+				},
+			},
+			prompts = {
+				{
+					role = constants.SYSTEM_ROLE,
+					content = function(context)
+						vim.g.codecompanion_yolo_mode = true
+						return string.format(
+							[[You carefully provide accurate, factual, thoughtful, nuanced answers, and are brilliant at reasoning.
+If you think there might not be a correct answer, you say so.
+Always spend a few sentences explaining background context, assumptions, and step-by-step thinking BEFORE
+you try to answer a question. Don't be verbose in your answers,
+but do provide details and examples where it might help the explanation.
+You are an expert software engineer for the %s language]],
+							context.filetype
+						)
+					end,
+					opts = { visible = true },
+				},
+				{
+					role = constants.USER_ROLE,
+					content = [[
+### Instructions
+
+
+
+### Expectations
+
+Make a plan of the code to add and to update to implement the feature describe in the `Instructions`.
+You should provide details of the planned changed without to be too verbose.
+
+- Provide a list of the file that you will update and create
+- Provide a list of the classes and the interface to create with brieve with their responsabilities
+- Don't forget to explain the changes that must be done on the database when it is relevent
+- Provide a list of tests that should be implemented to cover the feature
+
+You can use the following tools to browse the solution and analyze the code
+- @{neovim__read_file}
+- @{neovim__read_multiple_files}
+- @{neovim__find_files}
+- @{neovim__list_directory}
+- @{cmd_runner}
+- @{read_file}
+- @{grep_search}
+
+]],
+					opts = { auto_submit = false },
+				},
+			},
+		},
 		["Plan then execute"] = {
 			strategy = "workflow",
 			description = "Decompose complex tasks into smaller, manageable steps and execute them sequentially",

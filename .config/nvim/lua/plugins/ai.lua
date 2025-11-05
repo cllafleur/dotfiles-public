@@ -227,9 +227,10 @@ return {
 		config = function()
 			require("codecompanion").setup({
 				strategies = {
-					inline = { adapter = { name = "copilot", model = "claude-sonnet-4" } },
-					chat = { adapter = { name = "copilot", model = "claude-sonnet-4.5" } },
-					cmd = { adapter = { name = "copilot", model = "claude-sonnet-4" } },
+					inline = { adapter = { name = "copilot", model = "gpt-5-mini" } },
+					chat = { adapter = { name = "copilot", model = "gpt-5-mini" } },
+					-- chat = { adapter = { name = "copilot", model = "claude-sonnet-4.5" } },
+					cmd = { adapter = { name = "copilot", model = "gpt-5-mini" } },
 				},
 				memory = {
 					opts = {

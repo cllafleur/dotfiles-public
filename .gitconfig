@@ -22,6 +22,13 @@
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 	path = 
+#[merge-tools]
+#  nvimdiff.executable = nvim
+#  nvimdiff.args = -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write" -c "nnoremap co :diffget 2<cr>" -c "nnoremap ct :diffget 4<cr>"
+#  nvimdiff.premerge = keep
+#  nvimdiff.check = conflicts
 [mergetool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  #layout = "LOCAL,BASE,REMOTE / MERGED"
+  #cmd = nvim -d \"$LOCAL\" \"$REMOTE\" \"$BASE\"  \"$MERGED\" -c \"wincmd J\" -c \"set modifiable\" -c \"set write\" -c \"nnoremap co :diffget 2<cr>\" -c \"nnoremap ct :diffget 4<cr>\"
+  cmd = nvim -d \"$MERGED\" \"$LOCAL\" \"$BASE\"  \"$REMOTE\" -c \"wincmd J\" -c \"set modifiable\" -c \"set write\" -c \"nnoremap co :diffget 2<cr>\" -c \"nnoremap ct :diffget 4<cr>\"
 	trustExitCode = true
