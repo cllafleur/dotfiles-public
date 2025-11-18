@@ -261,7 +261,7 @@ return {
 									default = "qwen3:8b",
 								},
 								num_ctx = {
-									default = 24000,
+									default = 20000,
 								},
 								num_predict = { default = -1 },
 								think = {
@@ -276,9 +276,9 @@ return {
 							},
 						})
 					end,
-					ollamactx40k_think = function()
+					ollamactx30k_think = function()
 						return require("codecompanion.adapters").extend("ollama", {
-							name = "ollamactx40k_think",
+							name = "ollamactx30k_think",
 							opts = {
 								vision = true,
 								stream = true,
@@ -288,7 +288,7 @@ return {
 									default = "qwen3:8b",
 								},
 								num_ctx = {
-									default = 40960,
+									default = 30960,
 								},
 								num_predict = { default = -1 },
 								think = {

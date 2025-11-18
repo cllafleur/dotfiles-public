@@ -109,6 +109,24 @@ return {
 							EnableDecompilationSupport = true,
 						},
 					},
+					keys = {
+						{
+							"gD",
+							function()
+								require("omnisharp_extended").telescope_lsp_definitions({ jump_type = "split", reuse_win = true })
+							end,
+							desc = "Goto Definition",
+							has = "definition",
+						},
+						{
+							"gd",
+							function()
+								require("omnisharp_extended").telescope_lsp_definitions({ jump_type = "never", reuse_win = false })
+							end,
+							desc = "Goto Definition",
+							has = "definition",
+						},
+					},
 				},
 				cssls = {},
 				tailwindcss = {
