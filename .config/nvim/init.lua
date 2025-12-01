@@ -7,6 +7,7 @@ vim.filetype.add({
 		jinja = "jinja",
 		jinja2 = "jinja",
 		j2 = "jinja",
+		csproj = "xml",
 	},
 })
 
