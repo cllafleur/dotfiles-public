@@ -242,74 +242,76 @@ return {
 				},
 				prompt_library = require("plugins.extensions.companion-prompt-library").get_prompt_library(),
 				adapters = {
-					gemini = function()
-						return require("codecompanion.adapters").extend("gemini", {
-							env = {
-								api_key = os.getenv("GEMINI_API_KEY"),
-							},
-						})
-					end,
-					ollama_ctx_16k = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							name = "ollama_ctx_16k",
-							opts = {
-								vision = true,
-								stream = true,
-							},
-							schema = {
-								model = {
-									default = "qwen3:8b",
+					http = {
+						gemini = function()
+							return require("codecompanion.adapters").extend("gemini", {
+								env = {
+									api_key = os.getenv("GEMINI_API_KEY"),
 								},
-								num_ctx = {
-									default = 20000,
+							})
+						end,
+						ollama_ctx_16k = function()
+							return require("codecompanion.adapters").extend("ollama", {
+								name = "ollama_ctx_16k",
+								opts = {
+									vision = true,
+									stream = true,
 								},
-								num_predict = { default = -1 },
-								think = {
-									default = false,
-									--default = function(adapter)
-									--	local model_name = adapter.model.name:lower()
-									--	return vim.iter({ "qwen3" }):any(function(kw)
-									--		return string.find(model_name, kw) ~= nil
-									--	end)
-									--end,
+								schema = {
+									model = {
+										default = "qwen3:8b",
+									},
+									num_ctx = {
+										default = 20000,
+									},
+									num_predict = { default = -1 },
+									think = {
+										default = false,
+										--default = function(adapter)
+										--	local model_name = adapter.model.name:lower()
+										--	return vim.iter({ "qwen3" }):any(function(kw)
+										--		return string.find(model_name, kw) ~= nil
+										--	end)
+										--end,
+									},
 								},
-							},
-						})
-					end,
-					ollamactx30k_think = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							name = "ollamactx30k_think",
-							opts = {
-								vision = true,
-								stream = true,
-							},
-							schema = {
-								model = {
-									default = "qwen3:8b",
+							})
+						end,
+						ollamactx30k_think = function()
+							return require("codecompanion.adapters").extend("ollama", {
+								name = "ollamactx30k_think",
+								opts = {
+									vision = true,
+									stream = true,
 								},
-								num_ctx = {
-									default = 30960,
+								schema = {
+									model = {
+										default = "qwen3:8b",
+									},
+									num_ctx = {
+										default = 30960,
+									},
+									num_predict = { default = -1 },
+									think = {
+										default = false,
+										--default = function(adapter)
+										--	local model_name = adapter.model.name:lower()
+										--	return vim.iter({ "qwen3" }):any(function(kw)
+										--		return string.find(model_name, kw) ~= nil
+										--	end)
+										--end,
+									},
 								},
-								num_predict = { default = -1 },
-								think = {
-									default = false,
-									--default = function(adapter)
-									--	local model_name = adapter.model.name:lower()
-									--	return vim.iter({ "qwen3" }):any(function(kw)
-									--		return string.find(model_name, kw) ~= nil
-									--	end)
-									--end,
+							})
+						end,
+						lmstudio = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								env = {
+									url = "http://localhost:1234",
 								},
-							},
-						})
-					end,
-					lmstudio = function()
-						return require("codecompanion.adapters").extend("openai_compatible", {
-							env = {
-								url = "http://localhost:1234",
-							},
-						})
-					end,
+							})
+						end,
+					},
 				},
 				extensions = {
 					vectorcode = {
