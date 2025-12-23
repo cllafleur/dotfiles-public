@@ -45,7 +45,7 @@
 custom-shader = ./shaders/cursor_frozen.glsl
 #custom-shader = ./shaders/water.glsl
 #custom-shader = ./shaders/cineShader-Lave.glsl
-custom-shader = ./shaders/cubes.glsl
+#custom-shader = ./shaders/cubes.glsl
 #custom-shader = ./shaders/inside-the-matrix.glsl
 
 custom-shader-animation = always

@@ -32,3 +32,5 @@
   #cmd = nvim -d \"$LOCAL\" \"$REMOTE\" \"$BASE\"  \"$MERGED\" -c \"wincmd J\" -c \"set modifiable\" -c \"set write\" -c \"nnoremap co :diffget 2<cr>\" -c \"nnoremap ct :diffget 4<cr>\"
   cmd = nvim -d \"$MERGED\" \"$LOCAL\" \"$BASE\"  \"$REMOTE\" -c \"wincmd J\" -c \"set modifiable\" -c \"set write\" -c \"nnoremap co :diffget 2<cr>\" -c \"nnoremap ct :diffget 4<cr>\"
 	trustExitCode = true
+[init]
+	defaultBranch = main
