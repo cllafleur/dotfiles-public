@@ -1,5 +1,5 @@
 -- local discipline = require("craftzdog.discipline")
--- 
+--
 -- discipline.cowboy()
 
 local keymap = vim.keymap
@@ -74,3 +74,35 @@ end)
 vim.api.nvim_create_user_command("ToggleAutoformat", function()
 	require("craftzdog.lsp").toggleAutoformat()
 end, {})
+
+-- Check if diff mode is enabled
+if vim.opt.diff:get() then
+	-- Define key mappings for diff mode
+	vim.api.nvim_set_keymap("n", "<localleader>1", ":diffget LOCAL<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<localleader>2", ":diffget BASE<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<localleader>3", ":diffget REMOTE<CR>", { noremap = true, silent = true })
+	-- parameter to fix the new default setting of neovim describe here https://github.com/neovim/neovim/issues/22696
+	vim.o.diffopt = "internal,filler,closeoff"
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		if vim.opt.diff:get() then
+			local wk = require("which-key")
+			local opts = {
+				mode = "n", -- NORMAL mode
+				buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings
+			}
+			local mappings = {
+				["<localleader>"] = {
+					["1"] = { ":diffget LOCAL<CR>", "Get LOCAL" },
+					["2"] = { ":diffget BASE<CR>", "Get BASE" },
+					["3"] = { ":diffget REMOTE<CR>", "Get REMOTE" },
+				},
+			}
+
+			wk.register(mappings, opts)
+		end
+	end,
+})
