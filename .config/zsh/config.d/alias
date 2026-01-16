@@ -1,3 +1,5 @@
 alias termbin="nc termbin.com 9999"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+alias fabric-copilot='fabric-ai --stream -V "OpenAI" -m "gpt-5-mini" --disable-responses-api'

@@ -1,0 +1,9 @@
+[Unit]
+Description=Copilot API Service
+
+[Service]
+ExecStart=docker compose -f ${HOME}/.compose/copilot-api.yml up
+#StandardOutput=socket
+
+[Install]
+WantedBy=default.target
