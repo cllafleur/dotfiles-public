@@ -1,0 +1,11 @@
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+ExecStartPost=bash -c 'ssh-add `find $HOME/.ssh/ -type f \( -iname "id_*" -and \! -iname "*.pub" \)`'
+
+[Install]
+WantedBy=default.target
