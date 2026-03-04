@@ -99,7 +99,17 @@ return {
 					mason = false,
 				},
 				omnisharp = {
-					--cmd = { "omnisharp" },
+					--cmd = {
+					--	"omnisharp",
+					--	"-z",
+					--	"DotNet:enablePackageRestore=false",
+					--	"--encoding",
+					--	"utf-8",
+					--	"--languageserver",
+					--	"-v",
+					--	"-s",
+					--	vim.loop.cwd(),
+					--},
 					root_dir = function(bufnr, on_dir)
 						on_dir(vim.loop.cwd())
 					end,
