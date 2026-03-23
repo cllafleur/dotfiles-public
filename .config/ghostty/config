@@ -48,7 +48,7 @@ custom-shader = ./shaders/cursor_frozen.glsl
 #custom-shader = ./shaders/cubes.glsl
 #custom-shader = ./shaders/inside-the-matrix.glsl
 
-custom-shader-animation = always
+custom-shader-animation = true
 
 theme = "Bright Lights"
 background-opacity = 0.85
