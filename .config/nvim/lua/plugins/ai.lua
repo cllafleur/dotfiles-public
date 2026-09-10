@@ -99,6 +99,36 @@ return {
 		end,
 	},
 	{
+		"nickjvandyke/opencode.nvim",
+		version = "*", -- Latest stable release
+		config = function()
+			---@type opencode.Opts
+			vim.g.opencode_opts = {
+				-- Your configuration, if any; goto definition on the type for details
+			}
+
+			-- Recommended/example keymaps
+			vim.keymap.set({ "n", "x" }, "<Leader>Aa", function()
+				require("opencode").ask("@this: ")
+			end, { desc = "Ask OpenCode…" })
+			vim.keymap.set({ "n", "x" }, "<Leader>Ax", function()
+				require("opencode").select()
+			end, { desc = "Select OpenCode…" })
+			vim.keymap.set({ "n", "x" }, "<Leader>Ago", function()
+				return require("opencode").operator("@this ")
+			end, { desc = "Append range to OpenCode", expr = true })
+			vim.keymap.set({ "n" }, "<Leader>Agoo", function()
+				return require("opencode").operator("@this ") .. "_"
+			end, { desc = "Append line to OpenCode", expr = true })
+			vim.keymap.set({ "n" }, "<Leader>Au", function()
+				require("opencode").command("session.half.page.up")
+			end, { desc = "Scroll OpenCode up" })
+			vim.keymap.set({ "n" }, "<Leader>Ad", function()
+				require("opencode").command("session.half.page.down")
+			end, { desc = "Scroll OpenCode down" })
+		end,
+	},
+	{
 		"olimorris/codecompanion.nvim",
 		opts = {
 			send_code = true,

@@ -10,3 +10,8 @@ opacity = 0.9
 normal = { family = "JetBrainsMonoNLNerdFontMono", style = "Regular" }
 size = 11.25
 offset = { x = 0, y = -2 }
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

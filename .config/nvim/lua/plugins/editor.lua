@@ -1,4 +1,5 @@
 return {
+	{ "RaafatTurki/hex.nvim" },
 	{
 		enabled = false,
 		"folke/flash.nvim",

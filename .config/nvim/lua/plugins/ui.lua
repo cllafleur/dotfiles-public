@@ -62,45 +62,69 @@ return {
 	{
 		"snacks.nvim",
 		opts = {
-			-- animate = { enabled = true },
-			-- scroll = { enabled = true },
-			-- picker = {
-			-- 	sources = {
-			-- 		explorer = {
-			-- 			layout = {
-			-- 				hidden = { "preview" },
-			-- 				layout = {
-			-- 					backdrop = false,
-			-- 					max_width = 100,
-			-- 					min_width = 40,
-			-- 					height = 0,
-			-- 					position = "left",
-			-- 					border = "none",
-			-- 					box = "horizontal",
-			-- 					{
-			-- 						backdrop = false,
-			-- 						width = 40,
-			-- 						min_width = 40,
-			-- 						height = 0,
-			-- 						position = "left",
-			-- 						border = "none",
-			-- 						box = "vertical",
-			-- 						{
-			-- 							win = "input",
-			-- 							height = 1,
-			-- 							border = true,
-			-- 							title = "{title} {live} {flags}",
-			-- 							title_pos = "center",
-			-- 						},
-			-- 						{ win = "list", border = "none" },
-			-- 					},
-			-- 					{ win = "preview", title = "{preview}", border = "top" },
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
+			input = {
+				enabled = true, -- Enhances Ask
+			},
+			picker = {
+				enabled = true, -- Enhances Select
+				win = {
+					input = {
+						keys = {
+							["<a-o>"] = { "opencode_send", mode = { "n", "i" } },
+						},
+					},
+				},
+				actions = {
+					opencode_send = function(picker) ---@param picker snacks.Picker
+						local items = vim.tbl_map(function(item) ---@param item snacks.picker.Item
+							return item.file and require("opencode").format({ path = item.file, from = item.pos, to = item.end_pos })
+								or item.text
+						end, picker:selected({ fallback = true }))
+
+						require("opencode").prompt(table.concat(items, ", ") .. " ")
+					end,
+				},
+			},
 		},
+		-- animate = { enabled = true },
+		-- scroll = { enabled = true },
+		-- picker = {
+		-- 	sources = {
+		-- 		explorer = {
+		-- 			layout = {
+		-- 				hidden = { "preview" },
+		-- 				layout = {
+		-- 					backdrop = false,
+		-- 					max_width = 100,
+		-- 					min_width = 40,
+		-- 					height = 0,
+		-- 					position = "left",
+		-- 					border = "none",
+		-- 					box = "horizontal",
+		-- 					{
+		-- 						backdrop = false,
+		-- 						width = 40,
+		-- 						min_width = 40,
+		-- 						height = 0,
+		-- 						position = "left",
+		-- 						border = "none",
+		-- 						box = "vertical",
+		-- 						{
+		-- 							win = "input",
+		-- 							height = 1,
+		-- 							border = true,
+		-- 							title = "{title} {live} {flags}",
+		-- 							title_pos = "center",
+		-- 						},
+		-- 						{ win = "list", border = "none" },
+		-- 					},
+		-- 					{ win = "preview", title = "{preview}", border = "top" },
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 	},
+		-- },
+		--},
 		keys = {},
 	},
 
