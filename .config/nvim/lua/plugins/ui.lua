@@ -62,6 +62,7 @@ return {
 	{
 		"snacks.nvim",
 		opts = {
+			explorer = { enabled = true },
 			input = {
 				enabled = true, -- Enhances Ask
 			},
