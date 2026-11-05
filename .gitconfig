@@ -35,3 +35,5 @@
   #trustExitCode = true
 [init]
 	defaultBranch = main
+[alias]
+  clone-for-worktrees = "!sh $HOME/.bin/git-clone-bare-for-worktrees.sh"
